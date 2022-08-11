@@ -14,29 +14,31 @@ def rodada(comp_a, comp_b):
 def comparar(comp_a, comp_b, resposta):
     a_dict = int(comp_a['follower_count'])
     b_dict = int(comp_b['follower_count'])
+    global PARAR
+    global PLACAR
     
     if resposta == "a" and a_dict > b_dict:
-        placar += 1
+        PLACAR += 1
     elif resposta == "b" and a_dict < b_dict:
-        placar += 1
-               
-    else: print(f"Você errou! Seu placar é de {placar}")
+        PLACAR += 1
+    else: 
+        PARAR = True
 
         
-        
-        
+      
     
 
 
 comp_a = escolha()
-parar = False
+PARAR = False
+PLACAR = 0
 
-while parar == False:
+while PARAR == False:
     comp_b = escolha()
-    placar = 0
     print(comp_a)
     print(comp_b)
     rodada(comp_a, comp_b)
     resposta = input("Quem tem mais seguidores no Instagram? Digite 'A' ou 'B': ").lower()
     comparar(comp_a, comp_b, resposta)
+    print(f"Você errou! Seu placar é de {PLACAR}")
   

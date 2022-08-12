@@ -12,23 +12,21 @@ def rodada(comp_a, comp_b):
     print(f"COM B: {comp_b['name']}, um(a) {comp_b['description']} do(a) {comp_b['country']}.")
 
 def comparar(comp_a, comp_b, resposta):
-    a_dict = int(comp_a['follower_count'])
-    b_dict = int(comp_b['follower_count'])
+    seguidores_a = int(comp_a['follower_count'])
+    seguidores_b = int(comp_b['follower_count'])
     global PARAR
     global PLACAR
     
-    if resposta == "a" and a_dict > b_dict:
+    if resposta == "a" and seguidores_a > seguidores_b:
         PLACAR += 1
-    elif resposta == "b" and a_dict < b_dict:
+        return comp_a
+    elif resposta == "b" and seguidores_a < seguidores_b:
         PLACAR += 1
+        return comp_b
     else: 
         PARAR = True
 
-        
-      
-    
-
-
+               
 comp_a = escolha()
 PARAR = False
 PLACAR = 0
@@ -39,6 +37,7 @@ while PARAR == False:
     print(comp_b)
     rodada(comp_a, comp_b)
     resposta = input("Quem tem mais seguidores no Instagram? Digite 'A' ou 'B': ").lower()
-    comparar(comp_a, comp_b, resposta)
+
+    comp_a = comparar(comp_a, comp_b, resposta)
     print(f"Você errou! Seu placar é de {PLACAR}")
   
